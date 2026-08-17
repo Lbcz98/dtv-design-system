@@ -15,3 +15,6 @@ export type { RoundButtonProps } from "./components/RoundButton";
 
 export { MainButton } from "./components/MainButton";
 export type { MainButtonProps, MainButtonSponsor } from "./components/MainButton";
+
+export { InsertButton } from "./components/InsertButton";
+export type { InsertButtonProps } from "./components/InsertButton";

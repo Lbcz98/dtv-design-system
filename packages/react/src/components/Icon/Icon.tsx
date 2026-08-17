@@ -11,6 +11,7 @@ export type IconName =
   | "alert-circle"
   | "info"
   | "arrow-left"
+  | "arrow-right"
   | "menu";
 
 export type IconSize = "sm" | "md" | "lg";
@@ -29,6 +30,7 @@ const iconMap: Record<IconName, LucideIcon> = {
   "alert-circle": icons.AlertCircle,
   info: icons.Info,
   "arrow-left": icons.ArrowLeft,
+  "arrow-right": icons.ArrowRight,
   menu: icons.Menu,
 };
 
