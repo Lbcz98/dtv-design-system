@@ -1,5 +1,6 @@
 @import "@dtv/tokens/css";
 @import "@dtv/tokens/css/dark";
+@import "@dtv/react/styles.css";
 
 *,
 *::before,

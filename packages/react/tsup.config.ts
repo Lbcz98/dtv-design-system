@@ -7,10 +7,8 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   external: ["react", "react-dom"],
-  esbuildOptions(options) {
-    options.loader = {
-      ...options.loader,
-      ".css": "local-css",
-    };
+  injectStyle: false,
+  loader: {
+    ".css": "local-css",
   },
 });
