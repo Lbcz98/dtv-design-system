@@ -1,6 +1,7 @@
 .text {
   margin: 0;
   font-family: var(--font-family-sans);
+  letter-spacing: var(--font-tracking-tight);
 }
 
 .display {
@@ -67,6 +68,7 @@
 .weight_medium { font-weight: var(--font-weight-medium); }
 .weight_semibold { font-weight: var(--font-weight-semibold); }
 .weight_bold { font-weight: var(--font-weight-bold); }
+.weight_extrabold { font-weight: var(--font-weight-extrabold); }
 
 .color_primary { color: var(--color-text-primary); }
 .color_secondary { color: var(--color-text-secondary); }

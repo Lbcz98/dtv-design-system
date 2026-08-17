@@ -45,6 +45,116 @@ const colorGroups = [
   },
 ];
 
+const primaryTokens = [
+  "color-primary-dia-light",
+  "color-primary-dia-dark",
+  "color-primary-tarde-light",
+  "color-primary-tarde-dark",
+  "color-primary-noite-light",
+  "color-primary-noite-dark",
+];
+
+const complementaryTokens = [
+  "color-complementary-error",
+  "color-complementary-confirmation",
+  "color-complementary-alert",
+];
+
+const neutralTokens = [
+  "color-neutral-white",
+  "color-neutral-light",
+  "color-neutral-medium",
+  "color-neutral-dark",
+  "color-neutral-black",
+];
+
+const gradientTokens = [
+  "gradient-dia",
+  "gradient-dia-inverse",
+  "gradient-tarde",
+  "gradient-tarde-inverse",
+  "gradient-noite",
+  "gradient-noite-inverse",
+  "gradient-live",
+  "gradient-text",
+];
+
+const opacityTokens = [
+  "opacity-dark-10",
+  "opacity-dark-20",
+  "opacity-dark-30",
+  "opacity-dark-50",
+  "opacity-dark-70",
+  "opacity-light-10",
+  "opacity-light-20",
+  "opacity-light-30",
+  "opacity-light-50",
+  "opacity-light-70",
+];
+
+function BrandSwatch({ token }: { token: string }) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <div
+        style={{
+          width: 80,
+          height: 48,
+          borderRadius: 8,
+          backgroundColor: `var(--${token})`,
+          border: "1px solid var(--color-border-default)",
+        }}
+      />
+      <code style={{ fontSize: 11 }}>{token}</code>
+    </div>
+  );
+}
+
+function GradientSwatch({ token }: { token: string }) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <div
+        style={{
+          width: 120,
+          height: 48,
+          borderRadius: 8,
+          backgroundImage: `var(--${token})`,
+          border: "1px solid var(--color-border-default)",
+        }}
+      />
+      <code style={{ fontSize: 11 }}>{token}</code>
+    </div>
+  );
+}
+
+function OpacitySwatch({ token }: { token: string }) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <div
+        style={{
+          width: 80,
+          height: 48,
+          borderRadius: 8,
+          border: "1px solid var(--color-border-default)",
+          backgroundImage:
+            "linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%)",
+          backgroundSize: "12px 12px",
+          backgroundPosition: "0 0, 0 6px, 6px -6px, -6px 0px",
+        }}
+      >
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            borderRadius: 8,
+            backgroundColor: `var(--${token})`,
+          }}
+        />
+      </div>
+      <code style={{ fontSize: 11 }}>{token}</code>
+    </div>
+  );
+}
+
 function Swatch({ token }: { token: string }) {
   const isText = token.includes("text");
   return (
@@ -92,6 +202,53 @@ export const SemanticColors: StoryObj = {
           </div>
         </section>
       ))}
+    </div>
+  ),
+};
+
+export const BrandPalette: StoryObj = {
+  render: () => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+      <section>
+        <h3 style={{ marginBottom: 16 }}>Neutral</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
+          {neutralTokens.map((token) => (
+            <BrandSwatch key={token} token={token} />
+          ))}
+        </div>
+      </section>
+      <section>
+        <h3 style={{ marginBottom: 16 }}>Primary (Dia / Tarde / Noite)</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
+          {primaryTokens.map((token) => (
+            <BrandSwatch key={token} token={token} />
+          ))}
+        </div>
+      </section>
+      <section>
+        <h3 style={{ marginBottom: 16 }}>Complementary</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
+          {complementaryTokens.map((token) => (
+            <BrandSwatch key={token} token={token} />
+          ))}
+        </div>
+      </section>
+      <section>
+        <h3 style={{ marginBottom: 16 }}>Gradients</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
+          {gradientTokens.map((token) => (
+            <GradientSwatch key={token} token={token} />
+          ))}
+        </div>
+      </section>
+      <section>
+        <h3 style={{ marginBottom: 16 }}>Opacity scale</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
+          {opacityTokens.map((token) => (
+            <OpacitySwatch key={token} token={token} />
+          ))}
+        </div>
+      </section>
     </div>
   ),
 };

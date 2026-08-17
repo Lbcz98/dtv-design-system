@@ -13,7 +13,7 @@ export type TextVariant =
   | "label"
   | "caption";
 
-export type TextWeight = "regular" | "medium" | "semibold" | "bold";
+export type TextWeight = "regular" | "medium" | "semibold" | "bold" | "extrabold";
 
 export interface TextProps extends HTMLAttributes<HTMLElement> {
   variant?: TextVariant;
