@@ -1,0 +1,28 @@
+{
+  "name": "@dtv/storybook",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "STORYBOOK_DISABLE_TELEMETRY=1 storybook dev -p 6006",
+    "build": "STORYBOOK_DISABLE_TELEMETRY=1 storybook build --disable-telemetry",
+    "lint": "eslint stories --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@dtv/react": "workspace:*",
+    "@dtv/tokens": "workspace:*",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^8.4.7",
+    "@storybook/addon-essentials": "^8.4.7",
+    "@storybook/react": "^8.4.7",
+    "@storybook/react-vite": "^8.4.7",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "storybook": "^8.4.7",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.6"
+  }
+}

@@ -1,0 +1,77 @@
+.text {
+  margin: 0;
+  font-family: var(--font-family-sans);
+}
+
+.display {
+  font-size: var(--font-size-5xl);
+  line-height: var(--font-line-height-tight);
+  font-weight: var(--font-weight-bold);
+}
+
+.heading1 {
+  font-size: var(--font-size-4xl);
+  line-height: var(--font-line-height-tight);
+  font-weight: var(--font-weight-bold);
+}
+
+.heading2 {
+  font-size: var(--font-size-3xl);
+  line-height: var(--font-line-height-tight);
+  font-weight: var(--font-weight-semibold);
+}
+
+.heading3 {
+  font-size: var(--font-size-2xl);
+  line-height: var(--font-line-height-tight);
+  font-weight: var(--font-weight-semibold);
+}
+
+.heading4 {
+  font-size: var(--font-size-xl);
+  line-height: var(--font-line-height-normal);
+  font-weight: var(--font-weight-semibold);
+}
+
+.body_lg {
+  font-size: var(--font-size-lg);
+  line-height: var(--font-line-height-normal);
+  font-weight: var(--font-weight-regular);
+}
+
+.body_md {
+  font-size: var(--font-size-md);
+  line-height: var(--font-line-height-normal);
+  font-weight: var(--font-weight-regular);
+}
+
+.body_sm {
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-height-normal);
+  font-weight: var(--font-weight-regular);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-height-normal);
+  font-weight: var(--font-weight-medium);
+}
+
+.caption {
+  font-size: var(--font-size-xs);
+  line-height: var(--font-line-height-normal);
+  font-weight: var(--font-weight-regular);
+}
+
+.weight_regular { font-weight: var(--font-weight-regular); }
+.weight_medium { font-weight: var(--font-weight-medium); }
+.weight_semibold { font-weight: var(--font-weight-semibold); }
+.weight_bold { font-weight: var(--font-weight-bold); }
+
+.color_primary { color: var(--color-text-primary); }
+.color_secondary { color: var(--color-text-secondary); }
+.color_tertiary { color: var(--color-text-tertiary); }
+.color_inverse { color: var(--color-text-inverse); }
+.color_link { color: var(--color-text-link); }
+.color_error { color: var(--color-text-error); }
+.color_success { color: var(--color-text-success); }

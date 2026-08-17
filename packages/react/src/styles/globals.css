@@ -1,0 +1,18 @@
+@import "@dtv/tokens/css";
+@import "@dtv/tokens/css/dark";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-md);
+  line-height: var(--font-line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-default);
+  -webkit-font-smoothing: antialiased;
+}
