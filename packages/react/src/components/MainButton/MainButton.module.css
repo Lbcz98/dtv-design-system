@@ -6,11 +6,9 @@
   width: 158px;
   height: 122px;
   padding: var(--space-5);
-  border: 1px solid transparent;
+  border: none;
   border-radius: 28px;
-  background:
-    linear-gradient(var(--opacity-dark-30), var(--opacity-dark-30)) padding-box,
-    var(--gradient-diagonal-light) border-box;
+  background-color: var(--opacity-dark-30);
   cursor: pointer;
   text-align: left;
   overflow: hidden;
@@ -21,6 +19,27 @@
     border-radius 0.2s ease,
     border-color 0.2s ease,
     box-shadow 0.2s ease;
+}
+
+/* 1px diagonal-light stroke only — masked so it cannot show through the
+   translucent --opacity-dark-30 fill. */
+.mainButton::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--gradient-diagonal-light);
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
 }
 
 .mainButton:focus-visible,
@@ -51,18 +70,26 @@
     linear-gradient(180deg, #414ffd 0%, #35c7f3 100%) border-box;
 }
 
+.mainButton:focus-visible::before {
+  content: none;
+}
+
 .mainButton:disabled {
   cursor: not-allowed;
   opacity: 0.5;
 }
 
 .thumbnail {
+  position: relative;
+  z-index: 1;
   flex: 1;
   overflow: hidden;
   border-radius: var(--radius-md);
 }
 
 .content {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 3px;
@@ -103,6 +130,7 @@
 
 .liveBadge {
   position: absolute;
+  z-index: 1;
   top: 21px;
   left: var(--space-5);
   display: inline-flex;
@@ -129,6 +157,7 @@
 
 .checkBadge {
   position: absolute;
+  z-index: 1;
   top: var(--space-4);
   right: var(--space-4);
   display: inline-flex;
