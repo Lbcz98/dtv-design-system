@@ -6,9 +6,11 @@
   width: 158px;
   height: 122px;
   padding: var(--space-5);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid transparent;
   border-radius: 28px;
-  background-color: var(--color-surface-card-30);
+  background:
+    linear-gradient(var(--opacity-dark-30), var(--opacity-dark-30)) padding-box,
+    var(--gradient-diagonal-light) border-box;
   cursor: pointer;
   text-align: left;
   overflow: hidden;
@@ -56,8 +58,8 @@
 
 .thumbnail {
   flex: 1;
+  overflow: hidden;
   border-radius: var(--radius-md);
-  background-color: var(--color-surface-card-20);
 }
 
 .content {
