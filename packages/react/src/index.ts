@@ -9,3 +9,12 @@ export type { ButtonProps, ButtonVariant, ButtonSize } from "./components/Button
 
 export { Input } from "./components/Input";
 export type { InputProps, InputSize } from "./components/Input";
+
+export { RoundButton } from "./components/RoundButton";
+export type { RoundButtonProps } from "./components/RoundButton";
+
+export { MainButton } from "./components/MainButton";
+export type { MainButtonProps, MainButtonSponsor } from "./components/MainButton";
+
+export { InsertButton } from "./components/InsertButton";
+export type { InsertButtonProps } from "./components/InsertButton";

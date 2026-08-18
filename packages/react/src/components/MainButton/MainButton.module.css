@@ -1,0 +1,192 @@
+.mainButton {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 158px;
+  height: 122px;
+  padding: var(--space-5);
+  border: none;
+  border-radius: 28px;
+  background-color: var(--opacity-dark-30);
+  cursor: pointer;
+  text-align: left;
+  overflow: hidden;
+  transition:
+    width 0.2s ease,
+    height 0.2s ease,
+    padding 0.2s ease,
+    border-radius 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* 1px diagonal-light stroke only — masked so it cannot show through the
+   translucent --opacity-dark-30 fill. */
+.mainButton::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--gradient-diagonal-light);
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.mainButton:focus-visible,
+.mainButton.selected {
+  width: 208px;
+  height: 160px;
+  padding: 28px;
+  border-radius: 40px;
+}
+
+.mainButton:focus-visible {
+  outline: none;
+  /* 4px gradient stroke that tracks the full rounded path: content layers
+     are clipped to the padding-box so only the border-box layer (last,
+     bottommost) shows through in the border band. */
+  border: 4px solid transparent;
+  background:
+    radial-gradient(
+        120% 100% at 0% 100%,
+        rgba(65, 79, 253, 0.25) 0%,
+        rgba(53, 199, 243, 0.15) 55%,
+        rgba(53, 199, 243, 0) 100%
+      )
+      padding-box,
+    linear-gradient(180deg, rgba(23, 22, 27, 0.7) 0%, rgba(23, 22, 27, 0) 100%) padding-box,
+    radial-gradient(47.46% 100% at 50% 100%, #35c7f3 0%, rgba(53, 199, 243, 0) 100%) padding-box,
+    linear-gradient(#17161b, #17161b) padding-box,
+    linear-gradient(180deg, #414ffd 0%, #35c7f3 100%) border-box;
+}
+
+.mainButton:focus-visible::before {
+  content: none;
+}
+
+.mainButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.thumbnail {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.mainButton:focus-visible .content {
+  gap: var(--space-1);
+  opacity: 1;
+}
+
+.overline,
+.subtitle {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-3xs);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.mainButton:focus-visible .overline,
+.mainButton:focus-visible .subtitle {
+  font-size: var(--font-size-xs);
+}
+
+.title {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  color: var(--color-neutral-white);
+}
+
+.mainButton:focus-visible .title {
+  font-size: var(--font-size-md);
+}
+
+.liveBadge {
+  position: absolute;
+  z-index: 1;
+  top: 21px;
+  left: var(--space-5);
+  display: inline-flex;
+  align-items: center;
+  padding: 4px var(--space-1);
+  border-radius: var(--radius-full);
+  background-image: var(--gradient-live);
+}
+
+.mainButton:focus-visible .liveBadge,
+.mainButton.selected .liveBadge {
+  top: 28px;
+  left: 28px;
+}
+
+.liveLabel {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-3xs);
+  font-weight: var(--font-weight-extrabold);
+  letter-spacing: var(--font-tracking-tight);
+  white-space: nowrap;
+  color: var(--color-neutral-white);
+}
+
+.checkBadge {
+  position: absolute;
+  z-index: 1;
+  top: var(--space-4);
+  right: var(--space-4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-neutral-white);
+  color: var(--color-neutral-black);
+  box-shadow: var(--shadow-sm);
+}
+
+.mainButton:focus-visible .checkBadge,
+.mainButton.selected .checkBadge {
+  top: 28px;
+  right: 28px;
+}
+
+.sponsor {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.sponsorLabel {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-3xs);
+  font-weight: var(--font-weight-bold);
+  color: rgba(255, 255, 255, 0.7);
+}

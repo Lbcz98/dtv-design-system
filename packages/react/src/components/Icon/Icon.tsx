@@ -9,7 +9,10 @@ export type IconName =
   | "chevron-down"
   | "search"
   | "alert-circle"
-  | "info";
+  | "info"
+  | "arrow-left"
+  | "arrow-right"
+  | "menu";
 
 export type IconSize = "sm" | "md" | "lg";
 
@@ -26,6 +29,9 @@ const iconMap: Record<IconName, LucideIcon> = {
   search: icons.Search,
   "alert-circle": icons.AlertCircle,
   info: icons.Info,
+  "arrow-left": icons.ArrowLeft,
+  "arrow-right": icons.ArrowRight,
+  menu: icons.Menu,
 };
 
 export function Icon({ name, size = "md", className, ...props }: IconProps) {
