@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Overlay, type OverlayVariant } from "@dtv/react";
 import styles from "./TvFrame.module.css";
 
 export const CANVAS = { width: 1280, height: 720, inset: 40 } as const;
@@ -20,18 +21,21 @@ export const templateParameters = {
   },
 };
 
-export function TvFrame({ children }: { children: ReactNode }) {
+export function TvFrame({
+  children,
+  overlay = "home",
+}: {
+  children: ReactNode;
+  overlay?: OverlayVariant;
+}) {
   return (
     <div
       className={styles.frame}
+      data-theme="dark"
       style={{ width: CANVAS.width, height: CANVAS.height }}
     >
-      <div className={styles.video} aria-hidden>
-        video
-      </div>
-      <div className={styles.overlay} aria-hidden>
-        <span className={styles.overlayLabel}>overlay</span>
-      </div>
+      <div className={styles.video} aria-hidden />
+      <Overlay variant={overlay} />
       <div className={styles.stage}>{children}</div>
     </div>
   );

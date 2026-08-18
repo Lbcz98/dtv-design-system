@@ -1,30 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Placeholder } from "./Placeholder";
+import { FocusedContentTrail } from "./chrome";
 import { CANVAS, TvFrame, templateParameters } from "./TvFrame";
 
-function FocusedRailTemplate({ side }: { side: "left" | "right" }) {
+function FocusedRailTemplate({ side }: { side: "start" | "end" }) {
   return (
-    <TvFrame>
+    <TvFrame
+      overlay={
+        side === "start" ? "interactivityCardsStart" : "interactivityCardsEnd"
+      }
+    >
       <div
         style={{
           position: "absolute",
           left: CANVAS.inset,
           right: CANVAS.inset,
           bottom: CANVAS.inset,
-          display: "flex",
-          justifyContent: side === "left" ? "flex-start" : "flex-end",
         }}
       >
-        <Placeholder
-          label={
-            side === "left"
-              ? "Content trail — left (profile / schedule / alerts)"
-              : "Content trail — right (live / contextual)"
-          }
-          focused
-          width={868}
-          height={160}
-        />
+        <FocusedContentTrail side={side} />
       </div>
     </TvFrame>
   );
@@ -48,9 +41,9 @@ export default meta;
 type Story = StoryObj<typeof FocusedRailTemplate>;
 
 export const Left: Story = {
-  args: { side: "left" },
+  args: { side: "start" },
 };
 
 export const Right: Story = {
-  args: { side: "right" },
+  args: { side: "end" },
 };

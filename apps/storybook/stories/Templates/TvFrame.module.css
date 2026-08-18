@@ -8,34 +8,10 @@
   font-family: var(--font-family-sans);
 }
 
-.video,
-.overlay {
+.video {
   position: absolute;
   inset: 0;
-}
-
-.video {
   background: #2a2a30;
-  padding: 16px;
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-}
-
-.overlay {
-  pointer-events: none;
-  background: rgba(0, 0, 0, 0.4);
-}
-
-.overlayLabel {
-  position: absolute;
-  top: 16px;
-  left: 72px;
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
 }
 
 .stage {

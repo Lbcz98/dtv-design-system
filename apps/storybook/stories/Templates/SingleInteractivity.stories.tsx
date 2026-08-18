@@ -1,26 +1,25 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Icon, RoundButton } from "@dtv/react";
 import { Placeholder } from "./Placeholder";
 import { CANVAS, CLOSE, TvFrame, templateParameters } from "./TvFrame";
 
-function CloseSlot() {
+function CloseControl() {
   return (
-    <Placeholder
-      label="close"
-      width={CLOSE.size}
-      height={CLOSE.size}
-      radius="50%"
+    <div
       style={{
         position: "absolute",
         right: CLOSE.right,
         bottom: CLOSE.bottom,
       }}
-    />
+    >
+      <RoundButton icon={<Icon name="x" size="lg" />} aria-label="Close" autoFocus />
+    </div>
   );
 }
 
 function TallCardTemplate() {
   return (
-    <TvFrame>
+    <TvFrame overlay="interactivityCardsEnd">
       <Placeholder
         label="Level 3 — tall card (e.g. stats)"
         focused
@@ -32,14 +31,14 @@ function TallCardTemplate() {
           right: CANVAS.inset,
         }}
       />
-      <CloseSlot />
+      <CloseControl />
     </TvFrame>
   );
 }
 
 function FullPageTemplate() {
   return (
-    <TvFrame>
+    <TvFrame overlay="home">
       <Placeholder
         label="Level 3 — full page (VOD). Not a fourth level."
         focused
@@ -51,7 +50,7 @@ function FullPageTemplate() {
           left: CANVAS.inset,
         }}
       />
-      <CloseSlot />
+      <CloseControl />
     </TvFrame>
   );
 }
@@ -63,7 +62,7 @@ const meta: Meta = {
     docs: {
       description: {
         component:
-          "Level 3 single interactivity. Menu off. Close is the persistent control (top-right of the chrome band). Enter only from Level 2. Back / close: Level 2, or Level 1 if this was a full page.",
+          "Level 3 single interactivity. Menu off. Close is the persistent control. Enter only from Level 2. Back / close: Level 2, or Level 1 if this was a full page.",
       },
     },
   },

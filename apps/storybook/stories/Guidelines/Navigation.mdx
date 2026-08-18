@@ -51,12 +51,12 @@ The trail on Home is a **preview**, not a second destination. It updates with th
 
 | Focused slot | Hint trail |
 | --- | --- |
-| Profile | Profile cards |
-| Schedule | Programming cards |
-| Alerts | Notification cards |
-| Live / contextual | Interactivity cards |
+| Profile | Account cards (*Configurações da conta*, *Sair da conta*) |
+| EPG | Linear schedule with time ranges; live item uses the AO VIVO badge |
+| Discover | Widgets (weather, vote, promo) |
+| Live / contextual | Interactivities for the current show |
 
-The Globo bug does not spawn a trail. It is the home / exit control.
+The Globo bug is in the Left/Right dock path but does not spawn a trail. It is the home / exit control.
 
 ## Rails
 
@@ -64,10 +64,10 @@ Do not flip these sides.
 
 | Rail | Contents |
 | --- | --- |
-| **Left** | Profile, schedule, alerts / dynamic |
+| **Left** | Profile, EPG, Discover |
 | **Right** | Now-playing + Globo bug |
 
-Secondary trails inherit the same side: profile, schedule, and notifications open from the left; contextual interactivity opens from the right. Do not mix sides on the same page type.
+Secondary trails inherit the same side: profile, EPG, and Discover open from the left; live interactivities open from the right. Do not mix sides on the same page type.
 
 ## Layer stack
 
@@ -103,7 +103,7 @@ On Level 3, the persistent control is **Close** (top-right). The menu is off.
 
 ## Templates
 
-Empty 1280×720 compositions of this spec. Clone a template to start a page; do not invent new chrome.
+Clone a 1280×720 template to start a page; do not invent new chrome. They use Overlay, Menu, ContentTrail, and RoundButton. Level 3 content surfaces (tall card, VOD page) stay labeled slots until those components exist.
 
 | Level | Template |
 | --- | --- |
@@ -111,4 +111,4 @@ Empty 1280×720 compositions of this spec. Clone a template to start a page; do 
 | 2 focused trail | [Templates/FocusedRail — Left](?path=/story/templates-focusedrail--left) · [Right](?path=/story/templates-focusedrail--right) |
 | 3 single interactivity | [Templates/SingleInteractivity — Tall card](?path=/story/templates-singleinteractivity--tall-card) · [Full page](?path=/story/templates-singleinteractivity--full-page) |
 
-Fill these slots with Menu, Overlay, and content once those components are on the page. Keep the same regions.
+Fill these slots with page-specific content. Keep Overlay, Menu, and trail regions as they are.
