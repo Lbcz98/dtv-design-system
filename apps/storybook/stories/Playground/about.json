@@ -1,0 +1,28 @@
+{
+  "eta-mundo-melhor": {
+    "title": "Êta Mundo Melhor!",
+    "rating": "12",
+    "synopsis": "Candinho e seu fiel companheiro, Policarpo, estão de volta para novas aventuras na cidade grande. No entanto, o sumiço de seu filho traz um novo sofrimento pra ele, que continua acreditando que “tudo de ruim que acontece na vida é pra meiorá!”.",
+    "meta": ["2025", "Novela", "Romance", "Brasil"],
+    "credits": [
+      { "label": "Autor", "value": "Walcyr Carrasco, Mauro Wilson" },
+      { "label": "Direção artística", "value": "Amora Mautner" },
+      { "label": "Direção", "value": "João Paulo Jabur, Mayara Aguiar, Nathalia Ribas, Alexandre Macedo" },
+      { "label": "Elenco", "value": "Sergio Guizé, Jeniffer Nascimento, Heloisa Périssé, Larissa Manoela, Elizabeth Savala, Ary Fontoura", "more": true }
+    ],
+    "cast": [
+      "Sergio Guizé",
+      "Jeniffer Nascimento",
+      "Heloisa Périssé",
+      "Larissa Manoela",
+      "Elizabeth Savala",
+      "Ary Fontoura"
+    ],
+    "episodes": [
+      { "overline": "Ontem", "title": "Capítulo 184" },
+      { "overline": "Segunda", "title": "Capítulo 183" },
+      { "overline": "Sexta", "title": "Capítulo 182" },
+      { "overline": "Quinta", "title": "Capítulo 181" }
+    ]
+  }
+}
