@@ -1,0 +1,10 @@
+{
+  "items": [
+    {
+      "id": "account-settings",
+      "title": "Configurações da conta",
+      "surface": "page"
+    },
+    { "id": "sign-out", "title": "Sair da conta" }
+  ]
+}

@@ -11,10 +11,12 @@ import {
 } from "@dtv/react";
 import globoBug from "../assets/menu/globo-bug.png";
 import avatar from "../assets/menu/avatar.png";
-import programLogo from "../assets/menu/program-logo-2.png";
-import weather from "../assets/menu/weather.png";
+import { homeContent } from "../Pages/home/mapHome";
+import type { HomeNowPlaying, HomeWeather, ShelfCard } from "../Pages/home/types";
 import { Placeholder } from "./Placeholder";
 import { CANVAS, CLOSE } from "./TvFrame";
+
+export type { HomeNowPlaying, HomeWeather, ShelfCard } from "../Pages/home/types";
 
 export const activeTabs = [
   "profile",
@@ -83,48 +85,8 @@ const logoStyle: CSSProperties = {
   mixBlendMode: "screen",
 };
 
-export type ShelfCard = {
-  title: string;
-  subtitle?: string;
-  overline?: string;
-  live?: boolean;
-  thumbnail?: ReactNode;
-  surface?: "tall" | "page";
-};
-
-export const shelfCards: Record<Exclude<ActiveTab, "home">, ShelfCard[]> = {
-  profile: [
-    { title: "Configurações da conta", surface: "page" },
-    { title: "Sair da conta" },
-  ],
-  epg: [
-    {
-      overline: "16:00 – 17:50",
-      title: "Equador x Argentina",
-      live: true,
-    },
-    { overline: "17:50 – 19:20", title: "Central da Copa" },
-    { overline: "19:20 – 21:00", title: "Jornal Nacional" },
-    { overline: "21:00 – 23:00", title: "Fantástico" },
-  ],
-  discover: [
-    {
-      title: "26°",
-      subtitle: "São Paulo, SP",
-      thumbnail: (
-        <img src={weather} alt="" style={{ width: 40, height: 40 }} />
-      ),
-    },
-    { title: "Vote no Craque do Jogo" },
-    { title: "Prévia da Copa", subtitle: "Hoje à noite" },
-  ],
-  live: [
-    { title: "Opções de áudio" },
-    { title: "Lances da partida" },
-    { title: "Vote no Craque do Jogo" },
-    { title: "Estatísticas" },
-  ],
-};
+export const shelfCards: Record<Exclude<ActiveTab, "home">, ShelfCard[]> =
+  homeContent.shelfCards;
 
 function Trail({
   side,
@@ -148,20 +110,22 @@ function shelfSide(tab: Exclude<ActiveTab, "home">): "start" | "end" {
 
 export function TopShelf({
   tab,
+  cards,
   focusIndex,
   onActivate,
 }: {
   tab: ActiveTab;
+  cards?: ShelfCard[];
   focusIndex?: number;
   onActivate?: (index: number) => void;
 }) {
   if (tab === "home") return null;
-  const cards = shelfCards[tab];
+  const trail = cards ?? shelfCards[tab];
   return (
     <Trail side={shelfSide(tab)} label={`${tab} shelf`}>
-      {cards.map((card, index) => (
+      {trail.map((card, index) => (
         <MainButton
-          key={`${tab}-${card.title}`}
+          key={card.id ?? `${tab}-${card.title}`}
           title={card.title}
           subtitle={card.subtitle}
           overline={card.overline}
@@ -180,30 +144,38 @@ export function TopShelf({
   );
 }
 
-export function HomeMenu({ activeTab }: { activeTab: ActiveTab }) {
+export function HomeMenu({
+  activeTab,
+  weather = homeContent.weather,
+  nowPlaying = homeContent.nowPlaying,
+}: {
+  activeTab: ActiveTab;
+  weather?: HomeWeather;
+  nowPlaying?: HomeNowPlaying;
+}) {
   return (
     <Menu
-      aria-label="Main menu"
+      aria-label="Menu principal"
       start={
         <>
           <MenuItem
             data-tab="profile"
             icon={<img src={avatar} alt="" style={avatarStyle} />}
-            aria-label="Profile"
+            aria-label="Perfil"
             tabIndex={activeTab === "profile" ? 0 : -1}
           />
           <MenuItem
             data-tab="epg"
             icon={<Icon name="clock" size="lg" />}
-            aria-label="EPG"
+            aria-label="Programação"
             tabIndex={activeTab === "epg" ? 0 : -1}
           />
           <MenuItem
             data-tab="discover"
-            icon={<img src={weather} alt="" style={iconStyle} />}
-            title="Discover"
-            subtitle="Widgets"
-            aria-label="Discover"
+            icon={<img src={weather.iconSrc} alt="" style={iconStyle} />}
+            title={weather.title}
+            subtitle={weather.subtitle}
+            aria-label={weather.title}
             tabIndex={activeTab === "discover" ? 0 : -1}
           />
         </>
@@ -213,16 +185,16 @@ export function HomeMenu({ activeTab }: { activeTab: ActiveTab }) {
           <MenuItem
             data-tab="live"
             align="end"
-            icon={<img src={programLogo} alt="" style={logoStyle} />}
-            title="World Cup: Ecuador vs Argentina"
-            subtitle="Up next Central da Copa"
-            aria-label="Live"
+            icon={<img src={nowPlaying.logoSrc} alt="" style={logoStyle} />}
+            title={nowPlaying.title}
+            subtitle={nowPlaying.subtitle}
+            aria-label={nowPlaying.title}
             tabIndex={activeTab === "live" ? 0 : -1}
           />
           <HomeLogo
             data-tab="home"
             src={globoBug}
-            aria-label="Home"
+            aria-label="Início"
             tabIndex={activeTab === "home" ? 0 : -1}
           />
         </>

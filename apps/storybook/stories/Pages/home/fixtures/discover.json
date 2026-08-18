@@ -1,0 +1,10 @@
+{
+  "widgets": [
+    { "id": "vote-craque", "title": "Vote no Craque do Jogo" },
+    {
+      "id": "previa-copa",
+      "title": "Prévia da Copa",
+      "subtitle": "Hoje à noite"
+    }
+  ]
+}

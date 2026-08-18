@@ -1,0 +1,43 @@
+{
+  "channel": "Globo",
+  "now": "2026-01-14T16:30:00-03:00",
+  "programs": [
+    {
+      "id": "sessao-da-tarde",
+      "title": "Sessão da Tarde: Pegando Fogo",
+      "start": "2026-01-14T14:30:00-03:00",
+      "end": "2026-01-14T15:59:00-03:00"
+    },
+    {
+      "id": "copa-equ-arg",
+      "title": "Equador x Argentina",
+      "seriesTitle": "Copa do Mundo",
+      "start": "2026-01-14T16:00:00-03:00",
+      "end": "2026-01-14T17:50:00-03:00"
+    },
+    {
+      "id": "central-da-copa",
+      "title": "Central da Copa",
+      "start": "2026-01-14T17:51:00-03:00",
+      "end": "2026-01-14T18:15:00-03:00"
+    },
+    {
+      "id": "eta-mundo-melhor",
+      "title": "Êta Mundo Melhor!",
+      "start": "2026-01-14T18:16:00-03:00",
+      "end": "2026-01-14T18:44:00-03:00"
+    },
+    {
+      "id": "sp2",
+      "title": "SP 2ª Edição",
+      "start": "2026-01-14T18:45:00-03:00",
+      "end": "2026-01-14T19:14:00-03:00"
+    },
+    {
+      "id": "jornal-nacional",
+      "title": "Jornal Nacional",
+      "start": "2026-01-14T20:00:00-03:00",
+      "end": "2026-01-14T20:34:00-03:00"
+    }
+  ]
+}

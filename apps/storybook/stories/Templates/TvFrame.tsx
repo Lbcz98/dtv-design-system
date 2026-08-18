@@ -24,9 +24,12 @@ export const templateParameters = {
 export function TvFrame({
   children,
   overlay = "home",
+  video,
 }: {
   children: ReactNode;
   overlay?: OverlayVariant;
+  /** Optional 1280×720 still for the video layer. Templates omit this. */
+  video?: string;
 }) {
   return (
     <div
@@ -34,7 +37,11 @@ export function TvFrame({
       data-theme="dark"
       style={{ width: CANVAS.width, height: CANVAS.height }}
     >
-      <div className={styles.video} aria-hidden />
+      <div
+        className={styles.video}
+        aria-hidden
+        style={video ? { backgroundImage: `url(${video})` } : undefined}
+      />
       <Overlay variant={overlay} />
       <div className={styles.stage}>{children}</div>
     </div>

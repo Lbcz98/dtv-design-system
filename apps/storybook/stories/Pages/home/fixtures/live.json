@@ -1,0 +1,8 @@
+{
+  "items": [
+    { "id": "audio", "title": "Opções de áudio" },
+    { "id": "lances", "title": "Lances da partida" },
+    { "id": "vote-craque", "title": "Vote no Craque do Jogo" },
+    { "id": "stats", "title": "Estatísticas" }
+  ]
+}
