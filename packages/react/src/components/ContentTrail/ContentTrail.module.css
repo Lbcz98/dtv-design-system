@@ -4,8 +4,10 @@
   align-items: flex-end;
   gap: var(--space-3);
   width: 100%;
-  min-height: 122px;
-  overflow: hidden;
+  box-sizing: border-box;
+  padding-top: 38px;
+  min-height: 160px;
+  overflow: visible;
 }
 
 .trail > * {

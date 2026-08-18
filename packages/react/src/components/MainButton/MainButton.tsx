@@ -23,17 +23,15 @@ export interface MainButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>
   /** Sponsor/ad attribution row. */
   sponsor?: MainButtonSponsor;
   /**
-   * Marks the card as selected (e.g. currently playing) even when it does
-   * not have keyboard/remote focus. Visually enlarged like the focus state,
-   * but with dimmed content and a static border instead of a glow.
+   * Marks the card as selected even without keyboard focus. The background
+   * shell scales like focus; the label box does not move.
    */
   selected?: boolean;
 }
 
 /**
- * Fixed-size media card button, the system's primary interactive element
- * for browsing content. Grows and lights up on focus (`:focus-visible`);
- * `selected` mirrors the enlarged size without requiring live focus.
+ * Fixed-size media card button. The layout box and label stay 158×122 /
+ * 118px; focus scales a background shell so type never reflows.
  */
 export function MainButton({
   title,
@@ -54,6 +52,7 @@ export function MainButton({
 
   return (
     <button type={type} className={classes} {...props}>
+      <span className={styles.shell} aria-hidden="true" />
       <span className={styles.thumbnail}>{thumbnail}</span>
 
       {live && (
@@ -68,7 +67,7 @@ export function MainButton({
         </span>
       )}
 
-      <span className={styles.content}>
+      <span className={styles.label}>
         {overline && <span className={styles.overline}>{overline}</span>}
         <span className={styles.title}>{title}</span>
         {subtitle && <span className={styles.subtitle}>{subtitle}</span>}

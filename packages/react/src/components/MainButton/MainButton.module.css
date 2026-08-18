@@ -1,5 +1,21 @@
+/* ─────────────────────────────────────────────────────────
+ * ANIMATION STORYBOARD
+ *
+ *    0ms   rest: 158×122 layout box; label locked at 118px
+ *  200ms   shell scales 1 → (208/158, 160/122) from bottom center
+ *          type, padding, and layout box do not move
+ * ───────────────────────────────────────────────────────── */
+
 .mainButton {
+  --main-button-width: 158px;
+  --main-button-height: 122px;
+  --main-button-label-width: 118px;
+  --main-button-focus-scale-x: calc(208 / 158);
+  --main-button-focus-scale-y: calc(160 / 122);
+  --main-button-shell-duration: 200ms;
+
   box-sizing: border-box;
+  isolation: isolate;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -9,26 +25,42 @@
   padding: var(--space-5);
   border: none;
   border-radius: 28px;
-  background-color: var(--opacity-dark-30);
+  background: transparent;
   cursor: pointer;
   text-align: left;
-  overflow: hidden;
-  transition:
-    width 0.2s ease,
-    height 0.2s ease,
-    padding 0.2s ease,
-    border-radius 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  overflow: visible;
 }
 
-/* 1px diagonal-light stroke only — masked so it cannot show through the
-   translucent --opacity-dark-30 fill. */
-.mainButton::before {
+.mainButton:focus-visible,
+.mainButton.selected {
+  z-index: 1;
+  outline: none;
+}
+
+.mainButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.shell {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 28px;
+  background-color: var(--opacity-dark-30);
+  pointer-events: none;
+  transform-origin: center bottom;
+  transition:
+    transform var(--main-button-shell-duration) ease,
+    background-color var(--main-button-shell-duration) ease,
+    border-color var(--main-button-shell-duration) ease;
+}
+
+/* 1px diagonal-light stroke — masked so it cannot show through the fill. */
+.shell::before {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 0;
   border-radius: inherit;
   padding: 1px;
   background: var(--gradient-diagonal-light);
@@ -43,21 +75,16 @@
   mask-composite: exclude;
 }
 
-.mainButton:focus-visible,
-.mainButton.selected {
-  width: 208px;
-  height: 160px;
-  padding: 28px;
-  border-radius: 40px;
+.mainButton:focus-visible .shell,
+.mainButton.selected .shell {
+  transform: scale(
+    var(--main-button-focus-scale-x),
+    var(--main-button-focus-scale-y)
+  );
 }
 
-.mainButton:focus-visible {
-  outline: none;
-  /* 4px stroke sits inside the 208px frame (Figma inset 4px overlays).
-     Padding drops by 4px so chrome inset stays 28px; label width is pinned
-     separately and does not follow this padding. */
-  padding: 24px;
-  border: 4px solid transparent;
+.mainButton:focus-visible .shell {
+  border: 3px solid transparent;
   background:
     radial-gradient(
         120% 100% at 0% 100%,
@@ -72,13 +99,8 @@
     linear-gradient(180deg, #414ffd 0%, #35c7f3 100%) border-box;
 }
 
-.mainButton:focus-visible::before {
+.mainButton:focus-visible .shell::before {
   content: none;
-}
-
-.mainButton:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
 }
 
 .thumbnail {
@@ -89,24 +111,23 @@
   border-radius: var(--radius-md);
 }
 
-.content {
+.label {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 3px;
-  /* Resting inner width (158 − 20 − 20). Stays put when the card grows. */
   box-sizing: border-box;
   width: 118px;
   max-width: 118px;
   flex: 0 0 auto;
   align-self: flex-start;
   opacity: 0.5;
-  transition: opacity 0.2s ease;
+  transition: opacity var(--main-button-shell-duration) ease;
 }
 
-.mainButton:focus-visible .content,
-.mainButton.selected .content {
+.mainButton:focus-visible .label,
+.mainButton.selected .label {
   width: 118px;
   max-width: 118px;
   opacity: 1;
@@ -143,16 +164,6 @@
   background-image: var(--gradient-live);
 }
 
-.mainButton.selected .liveBadge {
-  top: 28px;
-  left: 28px;
-}
-
-.mainButton:focus-visible .liveBadge {
-  top: 24px;
-  left: 24px;
-}
-
 .liveLabel {
   font-family: var(--font-family-sans);
   font-size: var(--font-size-3xs);
@@ -176,16 +187,6 @@
   background-color: var(--color-neutral-white);
   color: var(--color-neutral-black);
   box-shadow: var(--shadow-sm);
-}
-
-.mainButton.selected .checkBadge {
-  top: 28px;
-  right: 28px;
-}
-
-.mainButton:focus-visible .checkBadge {
-  top: 24px;
-  right: 24px;
 }
 
 .sponsor {

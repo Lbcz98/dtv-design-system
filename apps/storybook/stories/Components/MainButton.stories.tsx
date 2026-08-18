@@ -68,6 +68,15 @@ export const WithSponsor: Story = {
   },
 };
 
+export const LabelWrap: Story = {
+  render: () => (
+    <>
+      <MainButton title="Vote no Craque do Jogo" />
+      <MainButton title="Vote no Craque do Jogo" selected />
+    </>
+  ),
+};
+
 export const AllStates: Story = {
   render: () => (
     <>
