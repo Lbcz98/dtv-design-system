@@ -12,7 +12,8 @@ export type IconName =
   | "info"
   | "arrow-left"
   | "arrow-right"
-  | "menu";
+  | "menu"
+  | "clock";
 
 export type IconSize = "sm" | "md" | "lg";
 
@@ -32,6 +33,7 @@ const iconMap: Record<IconName, LucideIcon> = {
   "arrow-left": icons.ArrowLeft,
   "arrow-right": icons.ArrowRight,
   menu: icons.Menu,
+  clock: icons.Clock,
 };
 
 export function Icon({ name, size = "md", className, ...props }: IconProps) {

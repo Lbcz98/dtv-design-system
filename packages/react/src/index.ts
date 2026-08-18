@@ -18,3 +18,6 @@ export type { MainButtonProps, MainButtonSponsor } from "./components/MainButton
 
 export { InsertButton } from "./components/InsertButton";
 export type { InsertButtonProps } from "./components/InsertButton";
+
+export { Menu, MenuItem, HomeLogo } from "./components/Menu";
+export type { MenuProps, MenuItemProps, MenuItemAlign, HomeLogoProps } from "./components/Menu";
