@@ -24,3 +24,6 @@ export type { MenuProps, MenuItemProps, MenuItemAlign, HomeLogoProps } from "./c
 
 export { ContentTrail } from "./components/ContentTrail";
 export type { ContentTrailProps, ContentTrailSide } from "./components/ContentTrail";
+
+export { Overlay, overlayLayers } from "./components/Overlay";
+export type { OverlayProps, OverlayVariant, OverlayLayer } from "./components/Overlay";

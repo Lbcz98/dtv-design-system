@@ -1,0 +1,63 @@
+.root {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+}
+
+.dim {
+  background-color: var(--opacity-dark-10);
+}
+
+.down {
+  background-image: linear-gradient(
+    179.79384051524158deg,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 0.9) 89.746%
+  );
+}
+
+.downEnd {
+  background-image: linear-gradient(
+    134.55341187260265deg,
+    rgba(0, 0, 0, 0) 59.518%,
+    rgb(0, 0, 0) 95.791%
+  );
+}
+
+.downStart {
+  background-image: linear-gradient(
+    225.44658812739735deg,
+    rgba(0, 0, 0, 0) 59.518%,
+    rgb(0, 0, 0) 95.791%
+  );
+}
+
+.upEnd {
+  background-image: linear-gradient(
+    36.40007669651158deg,
+    rgba(0, 0, 0, 0) 70.146%,
+    rgba(0, 0, 0, 0.8) 93.217%
+  );
+}
+
+.toEnd {
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+.toStart {
+  background-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}

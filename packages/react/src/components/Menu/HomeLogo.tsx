@@ -2,7 +2,7 @@ import { type ButtonHTMLAttributes } from "react";
 import styles from "./Menu.module.css";
 
 export interface HomeLogoProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  /** Company bug image, centered in the 88×88 hit target. */
+  /** Company bug image, rendered at 68×68 inside the 88×88 hit target. */
   src: string;
   /** Decorative; the button `aria-label` is the accessible name. */
   alt?: string;
@@ -25,7 +25,7 @@ export function HomeLogo({
 
   return (
     <button type={type} className={classes} {...props}>
-      <img className={styles.bug} src={src} alt={alt} width={88} height={88} />
+      <img className={styles.bug} src={src} alt={alt} width={68} height={68} />
     </button>
   );
 }
