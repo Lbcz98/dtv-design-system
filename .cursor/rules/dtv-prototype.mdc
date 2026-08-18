@@ -1,0 +1,43 @@
+---
+description: Prototype DTV TV screens — clone Templates, use @dtv/react, do not invent chrome
+alwaysApply: true
+---
+
+# DTV prototypes
+
+Pages are 1280×720 compositions. Do not invent chrome.
+
+Before writing a screen, answer: **level** (1 / 2 / 3), **menu** (configured / hint trail / hidden / off), **rail** (left or right, never both), **overlay** (named from the chrome footprint), **focus** and **back**.
+
+## Where to write
+
+- Scratch: `apps/storybook/stories/Playground/` — duplicate `Starter.stories.tsx`
+- Product: promote to `apps/storybook/stories/Pages/` when it passes [Guidelines/Navigation](apps/storybook/stories/Guidelines/Navigation.mdx)
+- Never add prototype screens or new chrome to `packages/react`
+
+## Clone a template
+
+| Level | Start from |
+| --- | --- |
+| 1 Home | `Templates/Home` or Playground `Starter` |
+| 2 focused trail | `Templates/FocusedRail` |
+| 3 tall card / VOD | `Templates/SingleInteractivity` |
+
+Keep `TvFrame`, `Overlay`, `HomeMenu`, `TopShelf` / `ContentTrail`. Fill slots with `@dtv/react` (`MainButton`, `MenuItem`, `RoundButton`).
+
+## Overlay
+
+Use an existing variant (`home`, `homeButtonsStart`, `homeButtonsEnd`, `interactivityCardsStart`, `interactivityCardsEnd`, …). Do not invent a new stack per page.
+
+## Data
+
+Map API/fixture payloads into `ShelfCard` / menu props (`Pages/home/mapEpg.ts`, `mapWeather.ts`). Do not hardcode copy on `MainButton`. Do not fetch from `@dtv/react`.
+
+## Don’t
+
+- Skip Level 2 to open an interactivity from Home
+- Keep the main menu visible on Level 2
+- Mix left and right rails on the same page
+- Treat VOD as a fourth level
+- Spawn a hint trail from the Globo bug
+- Put primary actions top-right except the bug (L1) or Close (L3)
