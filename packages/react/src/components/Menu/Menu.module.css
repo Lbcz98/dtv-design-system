@@ -89,8 +89,8 @@
 
 .bug {
   display: block;
-  width: 88px;
-  height: 88px;
+  width: 68px;
+  height: 68px;
   object-fit: contain;
   pointer-events: none;
 }
