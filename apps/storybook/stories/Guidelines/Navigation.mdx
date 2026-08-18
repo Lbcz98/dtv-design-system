@@ -1,0 +1,102 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Guidelines/Navigation" />
+
+# Navigation
+
+Pages in this system are compositions of a fixed 1280×720 stack. Before designing a screen, it must answer:
+
+- Which **level** is this?
+- Is the **menu** configured, a hint trail only, hidden, or off?
+- Which **rail** may open (left or right)?
+- Where does **focus** land, and how does the user go **back**?
+
+Overlay variants pair contrast to the chrome footprint. Name the overlay from that footprint; do not invent a new one per page.
+
+## Cartesian model
+
+Navigation is a Cartesian plane on a D-pad. Move on **one axis at a time**. **X** moves across options at the current level. **Y** changes depth: up goes deeper, Back goes shallower. There are no diagonal shortcuts.
+
+```
+Clean transmission
+        │  bug / open interface
+        ▼
+Level 1 Home
+  X: menu slots
+  Hint trail sits above the menu for the focused slot
+        │  up
+        ▼
+Level 2 focused trail
+  Menu hidden; only that trail
+  X: interactivities in the trail
+  Back: Level 1
+        │  enter the focused interactivity
+        ▼
+Level 3 single interactivity
+  Back / close: Level 2
+  (Level 1 if it was a full page, e.g. VOD)
+```
+
+## Three levels
+
+| Level | What you see | X | Y / Back |
+| --- | --- | --- | --- |
+| **1 Home** | Full menu. The trail for the **focused slot** sits **above** the menu as a hint of what is inside. | Horizontal between menu options | **Up** enters Level 2 for that slot. The bug returns to a clean transmission. |
+| **2 Trilho focado** | Menu **hidden**. Only the content trail. | Horizontal across interactivities | **Back** returns to Level 1. The user cannot skip to Level 3 without entering an item. |
+| **3 Interatividade única** | Only that interactivity: a tall card still on a trail (e.g. stats), or a full new page (VOD). | Within that surface, if it has its own rows | Enter only from Level 2. Close / Back leaves Level 3. |
+
+### Level 1 hint trails
+
+The trail on Home is a **preview**, not a second destination. It updates with the focused menu slot:
+
+| Focused slot | Hint trail |
+| --- | --- |
+| Profile | Profile cards |
+| Schedule | Programming cards |
+| Alerts | Notification cards |
+| Live / contextual | Interactivity cards |
+
+The Globo bug does not spawn a trail. It is the home / exit control.
+
+## Rails
+
+Do not flip these sides.
+
+| Rail | Contents |
+| --- | --- |
+| **Left** | Profile, schedule, alerts / dynamic |
+| **Right** | Now-playing + Globo bug |
+
+Secondary trails inherit the same side: profile, schedule, and notifications open from the left; contextual interactivity opens from the right. Do not mix sides on the same page type.
+
+## Layer stack
+
+Always **1280×720**, inset **40px**.
+
+1. Video
+2. Overlay / shadows (contrast only — not navigation)
+3. Chrome (menu on Level 1; hidden on Level 2; off on Level 3)
+4. Hint trail or focused trail
+5. Level 3 surface, when present
+
+On Level 3, the persistent control is **Close** (top-right). The menu is off.
+
+## Do / don’t
+
+**Do**
+
+- Keep one focus at a time.
+- Show the hint trail for the focused Level 1 slot.
+- Enter Level 2 with **Up** from that slot.
+- Enter Level 3 only by selecting an interactivity in Level 2.
+- Return with **Back** (Level 2 → 1, Level 3 → 2, or Level 3 → 1 for a full page).
+
+**Don’t**
+
+- Skip Level 2 to open an interactivity from Home.
+- Keep the main menu visible on Level 2.
+- Draw a second menu or restyle chrome per page.
+- Treat VOD as a fourth level — it is Level 3 as a full page.
+- Spawn a hint trail from the bug.
+- Jump from a left rail to a right rail without passing through the bar.
+- Put primary actions in the top-right except the bug (Level 1) or Close (Level 3).
