@@ -7,11 +7,14 @@ import {
   MainButton,
   Menu,
   MenuItem,
+  RoundButton,
 } from "@dtv/react";
 import globoBug from "../assets/menu/globo-bug.png";
 import avatar from "../assets/menu/avatar.png";
 import programLogo from "../assets/menu/program-logo-2.png";
 import weather from "../assets/menu/weather.png";
+import { Placeholder } from "./Placeholder";
+import { CANVAS, CLOSE } from "./TvFrame";
 
 export const activeTabs = [
   "profile",
@@ -22,6 +25,16 @@ export const activeTabs = [
 ] as const;
 
 export type ActiveTab = (typeof activeTabs)[number];
+
+export const NAV_KEYS = new Set([
+  "ArrowLeft",
+  "ArrowRight",
+  "ArrowUp",
+  "ArrowDown",
+  "Enter",
+  "Backspace",
+  "Escape",
+]);
 
 export const dockOrder: ActiveTab[] = [
   "profile",
@@ -76,11 +89,12 @@ export type ShelfCard = {
   overline?: string;
   live?: boolean;
   thumbnail?: ReactNode;
+  surface?: "tall" | "page";
 };
 
 export const shelfCards: Record<Exclude<ActiveTab, "home">, ShelfCard[]> = {
   profile: [
-    { title: "Configurações da conta" },
+    { title: "Configurações da conta", surface: "page" },
     { title: "Sair da conta" },
   ],
   epg: [
@@ -135,9 +149,11 @@ function shelfSide(tab: Exclude<ActiveTab, "home">): "start" | "end" {
 export function TopShelf({
   tab,
   focusIndex,
+  onActivate,
 }: {
   tab: ActiveTab;
   focusIndex?: number;
+  onActivate?: (index: number) => void;
 }) {
   if (tab === "home") return null;
   const cards = shelfCards[tab];
@@ -153,15 +169,15 @@ export function TopShelf({
           thumbnail={card.thumbnail}
           selected={focusIndex === index}
           tabIndex={focusIndex === index ? 0 : -1}
+          onClick={
+            onActivate && focusIndex !== undefined
+              ? () => onActivate(index)
+              : undefined
+          }
         />
       ))}
     </Trail>
   );
-}
-
-export function FocusedContentTrail({ side }: { side: "start" | "end" }) {
-  const tab = side === "start" ? "profile" : "live";
-  return <TopShelf tab={tab} focusIndex={0} />;
 }
 
 export function HomeMenu({ activeTab }: { activeTab: ActiveTab }) {
@@ -212,5 +228,63 @@ export function HomeMenu({ activeTab }: { activeTab: ActiveTab }) {
         </>
       }
     />
+  );
+}
+
+export function CloseControl({
+  autoFocus,
+  onClose,
+}: {
+  autoFocus?: boolean;
+  onClose?: () => void;
+}) {
+  return (
+    <div
+      style={{
+        position: "absolute",
+        right: CLOSE.right,
+        bottom: CLOSE.bottom,
+      }}
+    >
+      <RoundButton
+        icon={<Icon name="x" size="lg" />}
+        aria-label="Close"
+        autoFocus={autoFocus}
+        onClick={onClose}
+      />
+    </div>
+  );
+}
+
+export function Level3Surface({
+  tab,
+  card,
+  onClose,
+}: {
+  tab: Exclude<ActiveTab, "home">;
+  card: ShelfCard;
+  onClose: () => void;
+}) {
+  const page = card.surface === "page";
+  const start = shelfSide(tab) === "start";
+  return (
+    <>
+      <Placeholder
+        label={`Level 3 — ${page ? "full page" : "tall card"}: ${card.title}`}
+        focused
+        width={page ? CANVAS.width - CANVAS.inset * 2 : 288}
+        height={page ? CANVAS.height - CANVAS.inset * 2 : 440}
+        style={{
+          position: "absolute",
+          ...(page
+            ? { top: CANVAS.inset, left: CANVAS.inset }
+            : {
+                top: 160,
+                ...(start ? { left: CANVAS.inset } : { right: CANVAS.inset }),
+              }),
+        }}
+      />
+      <CloseControl autoFocus onClose={onClose} />
+    </>
   );
 }

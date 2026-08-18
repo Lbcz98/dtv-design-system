@@ -1,21 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Icon, RoundButton } from "@dtv/react";
+import { CloseControl } from "./chrome";
 import { Placeholder } from "./Placeholder";
-import { CANVAS, CLOSE, TvFrame, templateParameters } from "./TvFrame";
-
-function CloseControl() {
-  return (
-    <div
-      style={{
-        position: "absolute",
-        right: CLOSE.right,
-        bottom: CLOSE.bottom,
-      }}
-    >
-      <RoundButton icon={<Icon name="x" size="lg" />} aria-label="Close" autoFocus />
-    </div>
-  );
-}
+import { CANVAS, TvFrame, templateParameters } from "./TvFrame";
 
 function TallCardTemplate() {
   return (
@@ -31,7 +17,7 @@ function TallCardTemplate() {
           right: CANVAS.inset,
         }}
       />
-      <CloseControl />
+      <CloseControl autoFocus />
     </TvFrame>
   );
 }
@@ -50,7 +36,7 @@ function FullPageTemplate() {
           left: CANVAS.inset,
         }}
       />
-      <CloseControl />
+      <CloseControl autoFocus />
     </TvFrame>
   );
 }
