@@ -1,0 +1,23 @@
+.trail {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: 122px;
+  overflow: hidden;
+}
+
+.trail > * {
+  flex-shrink: 0;
+}
+
+.side_start {
+  justify-content: flex-start;
+  transform-origin: left bottom;
+}
+
+.side_end {
+  justify-content: flex-end;
+  transform-origin: right bottom;
+}

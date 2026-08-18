@@ -21,3 +21,6 @@ export type { InsertButtonProps } from "./components/InsertButton";
 
 export { Menu, MenuItem, HomeLogo } from "./components/Menu";
 export type { MenuProps, MenuItemProps, MenuItemAlign, HomeLogoProps } from "./components/Menu";
+
+export { ContentTrail } from "./components/ContentTrail";
+export type { ContentTrailProps, ContentTrailSide } from "./components/ContentTrail";
